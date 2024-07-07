@@ -2,8 +2,6 @@
 title: "Next.js 14의 Partial Pre-rendering(PPR) 이해하기"
 ---
 
-> 번역 글은 아니고, 이해를 위해 일부 각색한 글입니다.
-
 what is prerendering? Typically, when a server receives a request, it renders the page and sends the result back to the client. If a new request comes in, the server renders the page again. We call this end-of-the-spectrum dynamic rendering because the page is rendered on-demand for every incoming request. Pages that personalize content based on runtime information or frequently updated data require this per-request rendering because each render produces a different result. For example, an e-commerce site might show recommendations personalized to each user. However, most applications have some pages that do not benefit from dynamic rendering because they do not depend on any runtime information that would change the result of the render. For example, a company's blog might produce the same result every time it's rendered. We can optimize this subset of pages by doing the rendering work ahead of time. We call this end-of-the-spectrum prerendering or static rendering. Instead of dynamically rendering the page on every request at runtime, we can prerender the page once at build time and push the result to a Content Delivery Network. When a prerended page is requested, the static result is served from an Edge Region close to the user rather than a runtime server.
 
 전통적으로 렌더링 방식에는 2가지(동적 렌더링과 정적 렌더링)가 존재한다.<br>
