@@ -4,7 +4,7 @@ title: "API 만들기 예제 (TypeScript, NodeJS, Express)"
 
 ## api 만들기 전 초기 설정
 
-> [code example](https://github.com/moonshine-archive/nodejs-typescript-api-example/releases/tag/v1)
+> [code example](https://github.com/moonshine-archive/ts-express-playground/tree/main/api-in-depth)
 
 ### 라이브러리 설치
 
@@ -21,8 +21,8 @@ package.json에서 main을 의미하는 entry point는 일반적으로 빌드 �
 작은 프로젝트에서 로깅은 불필요할 수 있지만, 이후 확장성에 도움이 된다.<br>
 프로젝트 규모가 커지고 복잡해지면 [winston](https://github.com/winstonjs/winston) 같은 로깅 라이브러리를 사용하기도 하지만, 당장은 직접 구현하는 정도만 해도 충분하다.
 
-- [config](https://github.com/moonshine-archive/nodejs-typescript-api-example/blob/v1/src/config/config.ts)
-- [logging](https://github.com/moonshine-archive/nodejs-typescript-api-example/blob/v1/src/config/logging.ts)
+- [config](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/config/config.ts)
+- [logging](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/config/logging.ts)
 
 ### 서버 인스턴스 제어
 
@@ -45,7 +45,7 @@ express가 내부적으로 http를 사용함에도 불구하고 별도로 사용
 
 참고로, `httpServer = http.createServer(application);`는 api가 express api라는 걸 알 수 있게 해주는 역할이기도 한다.
 
-- [server.ts](https://github.com/moonshine-archive/nodejs-typescript-api-example/blob/v1/src/server.ts)
+- [server.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/server.ts)
 
 ### 미들웨어 생성
 
@@ -53,14 +53,14 @@ express가 내부적으로 http를 사용함에도 불구하고 별도로 사용
 
 #### loggingHandler
 
-[loggingHandler.ts](https://github.com/moonshine-archive/nodejs-typescript-api-example/blob/v1/src/middleware/loggingHandler.ts)
+[loggingHandler.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/middleware/loggingHandler.ts)
 
 위 로깅 핸들러에서는 크게 3가지 로그를 추적한다. (METHOD, URL, IP)<br>
 Response에서는 Status를 추가적으로 로그를 남긴다.
 
 #### corsHandler
 
-[corsHandler.ts](https://github.com/moonshine-archive/nodejs-typescript-api-example/blob/v1/src/middleware/corsHandler.ts)
+[corsHandler.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/middleware/corsHandler.ts)
 
 CORS는 웹 브라우저에서 보안상의 이유로 다른 출처(origin)의 리소스에 대한 접근을 제한하는 메커니즘이다.
 
@@ -72,13 +72,13 @@ options 메서드로 오는 `preflight` 요청을 처리하기 위한 코드가 
 
 #### routeNotFound
 
-[routeNotFound.ts](https://github.com/moonshine-archive/nodejs-typescript-api-example/blob/v1/src/middleware/routeNotFound.ts)
+[routeNotFound.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/middleware/routeNotFound.ts)
 
 요청이 api를 통과했지만, 올바른 경로가 아닌 경우에 대한 처리를 담당하는 미들웨어다.
 
 ### Testing (supertest, jest)
 
-[integration test](https://github.com/moonshine-archive/nodejs-typescript-api-example/blob/v1/test/integration/application.test.ts)
+[integration test](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/test/integration/application.test.ts)
 
 supertest는 express.js 통합 테스트용 라이브러리다. (내부적으로 express 서버 구동시켜서 가상 요청 보내고 결과 검증)<br>통합 테스트는 단위 테스트의 전체 프로세스를 테스트하는 반면 jest는 메서드 레벨의 단위 테스트 목적의 라이브러리다.
 

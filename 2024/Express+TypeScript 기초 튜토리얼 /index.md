@@ -2,7 +2,7 @@
 title: "Express + TypeScript 기초 튜토리얼 가이드"
 ---
 
-> [code example](https://github.com/moonshine-archive/ts-express-example/commits/v1.0.0)
+> [code example](https://github.com/moonshine-archive/ts-express-playground/tree/main/basic-setup)
 
 `node_modules/.bin/tsc` 파일은 실행할 수 있는 바이너리 파일이다. 우리가 사용할 TSC 스크립트이기도 하다.<br>
 npm에서 타입 파일은 `@types` prefix가 붙는 게 npm registry 표준이다.<br>
