@@ -2,6 +2,8 @@
 title: "pnpm workspace 환경에서 프론트엔드 모노레포 구축하기 (기본 개념 포함)"
 ---
 
+[github](https://github.com/moonshine-archive/fe-playground/tree/main/mono-in-pnpm-workspace)
+
 모노레포란 2개 이상의 프로젝트 코드를 동일한 저장소에서 관리하는 소프트웨어 개발 전략이다.
 
 ![alt text](image.png)
