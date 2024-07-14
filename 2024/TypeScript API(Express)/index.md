@@ -142,8 +142,19 @@ export function Validate(schema: Joi.ObjectSchema) {
 
 위 Validate 데코레이터에서는 request body에 대한 유효성 검사를 진행한다. 디스크립트를 교체하는 과정에서 유효성 검사를 진행한다.
 
+## with MongoDB, Mongoose and Decorators
+
+mongoose는 mongoDB와 통신할 때 사용하는 node.js 라이브러리다.
+
+[src/middleware/declareHandler.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/middleware/declareHandler.ts)에서 삭제를 제외한 나머지 요청에 대한 타입들이 document 혹은 document[]를 반환하므로 이를 네임스페이스로 정의해준다.
+
+[src/controllers/book.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/controllers/book.ts)에서는 mongoose를 사용해 예약에 관한 컨트롤러를 정의한다.
+
+컨트롤러에서 사용하는 데코레이터는 [src/decorators/mongoose/](https://github.com/moonshine-archive/ts-express-playground/tree/main/api-in-depth/src/decorators/mongoose)에서 정의한다. 이렇게 데코레이터를 정의하면 이후에는 모델을 정의하고 컨트롤러만 만들면 된다.
+
 ## References
 
 [Typescript API in NodeJS / Express in Depth [Part 1]](https://www.youtube.com/watch?v=NYZKUTGC51g&t=135s)<br>
 [Typescript API Routing with Decorators! [Part 2]](https://www.youtube.com/watch?v=8Dv9yWAJ6ww)<br>
 [Data validation with Typescript and Decorators [Part 3]](https://www.youtube.com/watch?v=dr8e6Nh1llk)<br>
+[Typescript Express API with MongoDB, Mongoose and Decorators](https://www.youtube.com/watch?v=WQWw1-IV4io)<br>
