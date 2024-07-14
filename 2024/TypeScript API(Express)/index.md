@@ -82,6 +82,26 @@ options 메서드로 오는 `preflight` 요청을 처리하기 위한 코드가 
 
 supertest는 express.js 통합 테스트용 라이브러리다. (내부적으로 express 서버 구동시켜서 가상 요청 보내고 결과 검증)<br>통합 테스트는 단위 테스트의 전체 프로세스를 테스트하는 반면 jest는 메서드 레벨의 단위 테스트 목적의 라이브러리다.
 
+## express의 route에 데코레이터 연결하기
+
+타입스크립트의 데코레이터는 직관적으로 동작하지 않는다. (tsconfig.json에서 `"experimentalDecorators"` 조건을 true로 해두어야 한다.)<br>
+`reflect-metadata`는 ts의 데코레이터를 사용하기 쉽게 만들어주는 라이브러리다. (nest.js도 해당 패키지를 기반으로 한다.)
+
+`export type RouteHandler = Map<keyof Express, Map<string, RequestHandler[]>>;`에서 핸들러가 string[]인 이유는, 최종 함수 실행 전에 실행할 일부 미들웨어를 전달하는 옵션을 제공하기 위함이다. (당장은 아니더라도 미래를 대비해 배열로 만드는 게 좋다.)
+
+- [src/library/routes.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/library/routes.ts)
+
+컨트롤러 데코레이터는 컨트롤러를 정의한다. (내부에서 메타데이터를 정의한 뒤, 이후 이 메타데이터 키를 호출하는 방식이다.)<br>
+Route 데코레이터는 express route를 메소드 레벨에서 정의할 수 있게 해준다. (`Reflect.getMetadata`로 메타데이터를 가져오고, `Reflect.defineMetadata`으로 메타데이터를 업데이트한다.)
+
+- [src/decorators/controller.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/decorators/controller.ts)
+- [src/decorators/route.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/decorators/route.ts)
+
+메타데이터로 정의한 것들을 로그로 찍기 위해 [defineRoutes](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/modules/routes.ts)를 정의하고 이를 서버 생성 시 주입해준다.
+
+![alt text](image.png)
+
 ## References
 
 [Typescript API in NodeJS / Express in Depth [Part 1]](https://www.youtube.com/watch?v=NYZKUTGC51g&t=135s)<br>
+[Typescript API Routing with Decorators! [Part 2]](https://www.youtube.com/watch?v=8Dv9yWAJ6ww)<br>
