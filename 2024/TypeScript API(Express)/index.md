@@ -101,7 +101,49 @@ Route 데코레이터는 express route를 메소드 레벨에서 정의할 수 �
 
 ![alt text](image.png)
 
+## Data Validation with Joi
+
+견고하고 안전한 어플리케이션을 만들기 위해 Data Validation은 매우 중요한 측면이다. `joi`는 node.js에서의 데이터 검증을 쉽게 만드는 라이브러리다.
+
+- [src/decorators/validate.ts](https://github.com/moonshine-archive/ts-express-playground/blob/main/api-in-depth/src/decorators/validate.ts)
+
+```ts
+import { Request, Response, NextFunction } from "express";
+import Joi from "joi";
+
+export function Validate(schema: Joi.ObjectSchema) {
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    const originalMethod = descriptor.value;
+
+    descriptor.value = async function (
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) {
+      try {
+        await schema.validateAsync(req.body);
+      } catch (error) {
+        logging.error(error);
+
+        return res.status(422).json(error);
+      }
+
+      return originalMethod.call(this, req, res, next);
+    };
+
+    return descriptor;
+  };
+}
+```
+
+위 Validate 데코레이터에서는 request body에 대한 유효성 검사를 진행한다. 디스크립트를 교체하는 과정에서 유효성 검사를 진행한다.
+
 ## References
 
 [Typescript API in NodeJS / Express in Depth [Part 1]](https://www.youtube.com/watch?v=NYZKUTGC51g&t=135s)<br>
 [Typescript API Routing with Decorators! [Part 2]](https://www.youtube.com/watch?v=8Dv9yWAJ6ww)<br>
+[Data validation with Typescript and Decorators [Part 3]](https://www.youtube.com/watch?v=dr8e6Nh1llk)<br>
