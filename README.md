@@ -17,3 +17,4 @@ By maintaining this repository, I aim to improve my problem-solving skills and d
 [[Document&Tutorial] pnpm workspace 환경에서 모노레포 구축 연습과 기본 개념](/2024/pnpm-workspace%20환경에서%20FE%20모노레포%20구축하기/index.md)<br>
 [[Document&Tutorial] Express + TypeScript 기초 튜토리얼](/2024/Express+TypeScript%20기초%20튜토리얼%20/index.md)<br>
 [[Document&Tutorial] API 만들기 예제 (ts, express => logging, decorators, data validation, mongoose decorators ...)](</2024/TypeScript%20API(Express)/index.md>)<br>
+[[Document&Tutorial] NodeJS,PrismaORM,TypeScript,MySQL 기초 튜토리얼](/2024/NodeJS,PrismaORM,TypeScript,MySQL%20기초%20튜토리얼/index.md)<br>
